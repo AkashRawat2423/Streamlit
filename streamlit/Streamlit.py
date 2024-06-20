@@ -38,6 +38,9 @@ def sqr(num):
 
 
 num = st.number_input("insert a number")
-if(st.button("calculater square")):
+if st.button("calculater square"):
     result = sqr(num)
     st.text(result)
+
+st.title("Hello, Streamlit!")
+st.write("This is a simple Streamlit app.")

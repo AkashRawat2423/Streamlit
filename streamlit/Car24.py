@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-import datetime
 import pickle
 
 cars_df = pd.read_excel(r"D:\ML Ops\Streamlit\streamlit\cars24-car-price.xlsx")
@@ -48,7 +47,7 @@ if st.button("Predict Price"):
     fuel_type = encode_dict['fuel_type'][fuel_type]
     transmission_type = encode_dict['transmission_type'][transmission_type]
 
-    price = model_pred(fuel_type, transmission_type, engine, seats)
+    model_pred(fuel_type, transmission_type, engine, seats)
     st.text("Predicted Price of the car is: " + str(price))
 
 

@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 import pickle
+from sklearn.linear_model import LinearRegression
 
 cars_df = pd.read_excel(r"D:\ML Ops\Streamlit\streamlit\cars24-car-price.xlsx")
 
@@ -26,6 +27,7 @@ def model_pred(fuel_type, transmission_type, engine, seats):
 
         input_features = [[2018.0, 1, 4000, fuel_type, transmission_type, 19.70, engine, 86.30, seats]]
         predictions = reg_model.predict(input_features)
+        return predictions[0]
 
 
 # Formatting and adding dropdowns and sliders
@@ -47,7 +49,8 @@ if st.button("Predict Price"):
     fuel_type = encode_dict['fuel_type'][fuel_type]
     transmission_type = encode_dict['transmission_type'][transmission_type]
 
-    model_pred(fuel_type, transmission_type, engine, seats)
-    st.text("Predicted Price of the car is: " + str(price))
+    # Get the predicted price
+    price = model_pred(fuel_type, transmission_type, engine, seats)
 
-
+    # Display the predicted price
+    st.text(f"Predicted Price of the car is: {price}")
